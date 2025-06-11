@@ -67,11 +67,18 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+<!-- Direct clickable GitHub icon -->
+<p align="right">
+  <a href="https://github.com/ChanCrits" target="_blank" title="Go to Christian Earl Siong's GitHub">
+    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" width="32" style="vertical-align:middle;">
+  </a>
+</p>
+
+<!-- Dropdown for both accounts -->
 <p align="right">
   <details>
     <summary>
-      <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" width="32" style="vertical-align:middle; cursor:pointer;">
-      <span style="vertical-align:middle; font-size:18px; cursor:pointer;"> GitHub</span>
+      <span style="vertical-align:middle; font-size:18px; cursor:pointer;">GitHub Accounts</span>
     </summary>
     <ul>
       <li><a href="https://github.com/ChanCrits" target="_blank">Christian Earl Siong</a></li>

@@ -341,6 +341,24 @@
             position: relative;
             z-index: 1;
         }
+
+        /* Add these styles to your existing styles */
+        .group:hover .group-hover\:block {
+            display: block;
+        }
+
+        .dark .group-hover\:block {
+            background-color: #1f2937;
+        }
+
+        .dark .group-hover\:block a {
+            color: #e5e7eb;
+        }
+
+        .dark .group-hover\:block a:hover {
+            background-color: #374151;
+            color: #ffffff;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -368,9 +386,24 @@
                     </a>
                 </div>
                 <div class="flex items-center">
-                    <a href="https://github.com/TacoTues1/QrCodeGenerator.git" target="_blank" class="mr-4 text-gray-600 hover:text-indigo-600 transition-colors duration-300">
-                        <i class="fab fa-github text-2xl"></i>
-                    </a>
+                    <div class="relative group" id="githubDropdown">
+                        <a href="https://github.com/TacoTues1/QrCodeGenerator.git" target="_blank" class="mr-4 text-gray-600 hover:text-indigo-600 transition-colors duration-300">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                        <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden" id="dropdownMenu">
+                            <div class="px-4 py-2 text-xs text-gray-500 border-b border-gray-200 dark:border-gray-700">
+                                Team Members
+                            </div>
+                            <a href="https://github.com/ChanCrits" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600" onclick="window.open(this.href, '_blank'); return false;">
+                                <i class="fab fa-github mr-2"></i>
+                                Christian Earl Siong
+                            </a>
+                            <a href="https://github.com/TacoTues1" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600" onclick="window.open(this.href, '_blank'); return false;">
+                                <i class="fab fa-github mr-2"></i>
+                                Alfonz Perez
+                            </a>
+                        </div>
+                    </div>
                     <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
                         <i class="fas fa-sun sun"></i>
                         <i class="fas fa-moon moon"></i>
@@ -512,6 +545,39 @@
     </footer>
 
     <script>
+        // Add this to your existing script section
+        const githubDropdown = document.getElementById('githubDropdown');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        let isDropdownOpen = false;
+
+        // Toggle dropdown on icon click
+        githubDropdown.querySelector('a').addEventListener('click', function(e) {
+            e.preventDefault();
+            isDropdownOpen = !isDropdownOpen;
+            dropdownMenu.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!githubDropdown.contains(e.target)) {
+                isDropdownOpen = false;
+                dropdownMenu.classList.add('hidden');
+            }
+        });
+
+        // Prevent dropdown from closing when clicking inside it
+        dropdownMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // Handle GitHub links
+        document.querySelectorAll('#dropdownMenu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.stopPropagation();
+                window.open(this.href, '_blank');
+            });
+        });
+
         // Theme switching functionality
         const themeToggle = document.getElementById('themeToggle');
         const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
