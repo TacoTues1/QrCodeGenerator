@@ -13,6 +13,122 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* Dark mode styles */
+        .dark {
+            color-scheme: dark;
+        }
+
+        .dark body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .dark .glass-effect {
+            background: rgba(17, 24, 39, 0.9);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark .bg-gradient-to-br {
+            background: linear-gradient(to bottom right, #1f2937, #111827);
+        }
+
+        .dark input {
+            background-color: #374151;
+            border-color: #4B5563;
+            color: #ffffff;
+        }
+
+        .dark input::placeholder {
+            color: #9CA3AF;
+        }
+
+        .dark .text-gray-700 {
+            color: #E5E7EB;
+        }
+
+        .dark .text-gray-500 {
+            color: #9CA3AF;
+        }
+
+        .dark .text-gray-900 {
+            color: #F3F4F6;
+        }
+
+        .dark .text-gray-600 {
+            color: #D1D5DB;
+        }
+
+        .dark .bg-white\/90 {
+            background-color: rgba(17, 24, 39, 0.9);
+        }
+
+        .dark .shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Theme toggle button styles */
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            border-radius: 15px;
+            background: #4f46e5;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5px;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: white;
+            transition: all 0.3s ease;
+            left: 3px;
+            z-index: 1;
+        }
+
+        .dark .theme-toggle::before {
+            left: 33px;
+            background: #1a1a1a;
+        }
+
+        .theme-toggle i {
+            color: white;
+            font-size: 14px;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle .sun {
+            margin-left: 5px;
+        }
+
+        .theme-toggle .moon {
+            margin-right: 5px;
+        }
+
+        .dark .theme-toggle .sun {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .dark .theme-toggle .moon {
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .theme-toggle .sun {
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .theme-toggle .moon {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
         .gradient-bg {
             background: linear-gradient(-45deg, #4f46e5, #7c3aed, #2563eb, #3b82f6);
             background-size: 400% 400%;
@@ -227,7 +343,7 @@
         }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen flex flex-col">
     <!-- Animated background elements -->
     <div class="animated-background"></div>
     <div class="animated-shapes">
@@ -241,12 +357,32 @@
         <div class="shape"></div>
     </div>
 
-    <div class="content-wrapper">
+    <!-- Navigation Bar -->
+    <nav class="bg-white/90 backdrop-blur-md shadow-md">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center space-x-2">
+                        <i class="fas fa-qrcode text-2xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600"></i>
+                        <span class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">QR Code Generator</span>
+                    </a>
+                </div>
+                <div class="flex items-center">
+                    <a href="https://github.com/TacoTues1/QrCodeGenerator.git" target="_blank" class="mr-4 text-gray-600 hover:text-indigo-600 transition-colors duration-300">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-sun sun"></i>
+                        <i class="fas fa-moon moon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content-wrapper flex-grow">
         <div class="container mx-auto px-4 py-8">
             <div class="max-w-4xl mx-auto">
-                <h1 class="text-4xl font-bold text-center mb-2 text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">QR Code Generator</h1>
-                <p class="text-center text-gray-600 mb-8 text-2xl font-semibold tracking-wide animate-fade-in">By Super Rico</p>
-                
                 <!-- URL Input Form -->
                 <div class="glass-effect rounded-xl shadow-lg p-6 mb-8 card-hover hover-scale">
                     <form id="qrForm" class="space-y-4">
@@ -276,7 +412,7 @@
                     </form>
                 </div>
 
-                <div id="qrCodeContainer" class="hidden fade-in">
+                <div id="qrCodeContainer" class="fade-in">
                     <!-- Combined QR Code and Details Card -->
                     <div class="glass-effect rounded-xl shadow-lg overflow-hidden card-hover">
                         <div class="p-6">
@@ -290,6 +426,10 @@
                                         </h2>
                                     </div>
                                     <div class="bg-gradient-to-br from-gray-50 to-gray-100 p-6 rounded-lg flex justify-center pulse" id="qrCodeDisplay">
+                                        <div class="text-center text-gray-500">
+                                            <i class="fas fa-qrcode text-4xl mb-2"></i>
+                                            <p>Enter a URL above to generate QR code</p>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -307,7 +447,7 @@
                                                 <i class="fas fa-link text-indigo-500 mt-1 text-sm"></i>
                                                 <div>
                                                     <h3 class="text-xs font-medium text-gray-500">URL</h3>
-                                                    <p class="mt-0.5 text-xs text-gray-900 break-all" id="qrUrl"></p>
+                                                    <p class="mt-0.5 text-xs text-gray-900 break-all" id="qrUrl">-</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -317,7 +457,7 @@
                                                 <i class="fas fa-clock text-indigo-500 mt-1 text-sm"></i>
                                                 <div>
                                                     <h3 class="text-xs font-medium text-gray-500">Generated</h3>
-                                                    <p class="mt-0.5 text-xs text-gray-900" id="generatedTime"></p>
+                                                    <p class="mt-0.5 text-xs text-gray-900" id="generatedTime">-</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -358,7 +498,44 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white mt-auto">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-center space-x-4 text-sm">
+                <span>© 2024 QR Code Generator. All rights reserved.</span>
+                <span>•</span>
+                <span>v2025 AppDev Final Project</span>
+                <span>•</span>
+                <span>Developed by: Alfonz Perez, Christian Earl Siong, Rico Jay Manaban</span>
+            </div>
+        </div>
+    </footer>
+
     <script>
+        // Theme switching functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Check for saved theme preference or use system preference
+        const currentTheme = localStorage.getItem('theme') || 
+            (prefersDarkScheme.matches ? 'dark' : 'light');
+        
+        // Apply the theme
+        if (currentTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+
+        // Theme toggle click handler
+        themeToggle.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
         // Add animation to the submit button
         document.querySelector('button[type="submit"]').classList.add('hover-scale');
         
@@ -381,7 +558,6 @@
             
             const url = document.getElementById('url').value;
             const urlError = document.getElementById('urlError');
-            const qrCodeContainer = document.getElementById('qrCodeContainer');
             
             urlError.classList.add('hidden');
             showLoading();
@@ -404,7 +580,6 @@
                     document.getElementById('qrCodeDisplay').innerHTML = data.qrCode;
                     document.getElementById('qrUrl').textContent = data.url;
                     document.getElementById('generatedTime').textContent = data.generatedAt;
-                    qrCodeContainer.classList.remove('hidden');
                 }
             })
             .catch(error => {
