@@ -394,11 +394,11 @@
                             <div class="px-4 py-2 text-xs text-gray-500 border-b border-gray-200 dark:border-gray-700">
                                 Team Members
                             </div>
-                            <a href="https://github.com/ChanCrits" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600" onclick="window.open(this.href, '_blank'); return false;">
+                            <a href="https://github.com/ChanCrits" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600" id="christianLink">
                                 <i class="fab fa-github mr-2"></i>
                                 Christian Earl Siong
                             </a>
-                            <a href="https://github.com/TacoTues1" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600" onclick="window.open(this.href, '_blank'); return false;">
+                            <a href="https://github.com/TacoTues1" class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600" id="alfonzLink">
                                 <i class="fab fa-github mr-2"></i>
                                 Alfonz Perez
                             </a>
@@ -548,6 +548,8 @@
         // Add this to your existing script section
         const githubDropdown = document.getElementById('githubDropdown');
         const dropdownMenu = document.getElementById('dropdownMenu');
+        const christianLink = document.getElementById('christianLink');
+        const alfonzLink = document.getElementById('alfonzLink');
         let isDropdownOpen = false;
 
         // Toggle dropdown on icon click
@@ -555,6 +557,20 @@
             e.preventDefault();
             isDropdownOpen = !isDropdownOpen;
             dropdownMenu.classList.toggle('hidden');
+        });
+
+        // Handle Christian's link
+        christianLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.open('https://github.com/ChanCrits', '_blank');
+        });
+
+        // Handle Alfonz's link
+        alfonzLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.open('https://github.com/TacoTues1', '_blank');
         });
 
         // Close dropdown when clicking outside
@@ -568,14 +584,6 @@
         // Prevent dropdown from closing when clicking inside it
         dropdownMenu.addEventListener('click', function(e) {
             e.stopPropagation();
-        });
-
-        // Handle GitHub links
-        document.querySelectorAll('#dropdownMenu a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.stopPropagation();
-                window.open(this.href, '_blank');
-            });
         });
 
         // Theme switching functionality
