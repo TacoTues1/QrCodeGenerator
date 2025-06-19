@@ -244,7 +244,7 @@
     <div class="content-wrapper">
         <div class="container mx-auto px-4 py-8">
             <div class="max-w-4xl mx-auto">
-                <h1 class="text-4xl font-bold text-center mb-2 text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">QR Code Generator</h1>
+                <h1 class="text-4xl font-bold text-center mb-2 text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">QR Code Generation</h1>
                 <p class="text-center text-gray-600 mb-8 text-2xl font-semibold tracking-wide animate-fade-in">By Super Rico</p>
                 
                 <!-- URL Input Form -->
